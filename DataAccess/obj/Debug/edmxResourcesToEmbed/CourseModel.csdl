@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Story.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Story.DBModel.Category" />
+    <EntitySet Name="Chapters" EntityType="Story.DBModel.Chapter" />
+    <EntitySet Name="Stories" EntityType="Story.DBModel.Story" />
+    <EntitySet Name="Tags" EntityType="Story.DBModel.Tag" />
+    <AssociationSet Name="FK_Story_Category" Association="Story.DBModel.FK_Story_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Story" EntitySet="Stories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chapters_Stories" Association="Story.DBModel.FK_Chapters_Stories">
+      <End Role="Story" EntitySet="Stories" />
+      <End Role="Chapter" EntitySet="Chapters" />
+    </AssociationSet>
+    <AssociationSet Name="TagRel" Association="Story.DBModel.TagRel">
+      <End Role="Story" EntitySet="Stories" />
+      <End Role="Tag" EntitySet="Tags" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="Story.DBModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Story.DBModel.User" />
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lft" Type="Int32" Nullable="false" />
+    <Property Name="rgt" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Stories" Relationship="Story.DBModel.FK_Story_Category" FromRole="Category" ToRole="Story" />
+  </EntityType>
+  <EntityType Name="Chapter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoryID" Type="Int32" Nullable="false" />
+    <Property Name="ChapterNum" Type="Int32" Nullable="false" />
+    <Property Name="ChapterName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Story" Relationship="Story.DBModel.FK_Chapters_Stories" FromRole="Chapter" ToRole="Story" />
+  </EntityType>
+  <EntityType Name="Story">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImgLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Story.DBModel.FK_Story_Category" FromRole="Story" ToRole="Category" />
+    <NavigationProperty Name="Chapters" Relationship="Story.DBModel.FK_Chapters_Stories" FromRole="Story" ToRole="Chapter" />
+    <NavigationProperty Name="Tags" Relationship="Story.DBModel.TagRel" FromRole="Story" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Stories" Relationship="Story.DBModel.TagRel" FromRole="Tag" ToRole="Story" />
+  </EntityType>
+  <Association Name="FK_Story_Category">
+    <End Type="Story.DBModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="Story.DBModel.Story" Role="Story" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Story">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chapters_Stories">
+    <End Type="Story.DBModel.Story" Role="Story" Multiplicity="1" />
+    <End Type="Story.DBModel.Chapter" Role="Chapter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="StoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TagRel">
+    <End Type="Story.DBModel.Story" Role="Story" Multiplicity="*" />
+    <End Type="Story.DBModel.Tag" Role="Tag" Multiplicity="*" />
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

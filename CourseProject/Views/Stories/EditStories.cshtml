@@ -1,0 +1,49 @@
+﻿@using CourseProject.Models;
+@model StoryViewModel
+
+@{
+    ViewBag.Title = "EditStories";
+}
+
+@{
+    if (string.IsNullOrEmpty(ViewBag.ErrorMessage) == false)
+    {
+        <div>@ViewBag.ErrorMessage</div>
+    }
+    if (string.IsNullOrEmpty(ViewBag.Message) == false)
+    {
+        <div>@ViewBag.Message</div>
+    }
+}
+
+<div class="table-actions">
+    <h2> Stories </h2>
+    @Html.ActionLink("Add New Story", "Edit", "Stories", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Has Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Slug</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (StoriesViewModel story in Model.Stories)
+    {
+    <tr>
+        <td>@(story.HasImg ? "Yes" : "No")</td>
+        <td>@story.Name</td>
+        <td>@story.Category</td>
+        <td>@story.Slug</td>
+        <td class="cell-small">
+            @Html.ActionLink("Edit", "Edit", "Stories", new { id = story.ID }, new { @class = "btn btn-primary btn-sm" })
+        </td>
+        <td class="cell-small">
+            @Html.ActionLink("Delete", "Delete", "Stories", new { id = story.ID }, new { onclick = "return confirm('Are you sure you to delete this story?');", @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+    }
+    </table>

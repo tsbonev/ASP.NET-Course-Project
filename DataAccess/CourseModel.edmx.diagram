@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c5a10b4f5b0a4debb849c817dd2d9fe3" Name="Diagram1">
+        <EntityTypeShape EntityType="Story.DBModel.Category" Width="1.5" PointX="3.375" PointY="2.5" />
+        <EntityTypeShape EntityType="Story.DBModel.Chapter" Width="1.5" PointX="7.875" PointY="3.375" />
+        <EntityTypeShape EntityType="Story.DBModel.Story" Width="1.5" PointX="5.625" PointY="2.25" />
+        <EntityTypeShape EntityType="Story.DBModel.Tag" Width="1.5" PointX="7.875" PointY="1.125" />
+        <AssociationConnector Association="Story.DBModel.FK_Story_Category" />
+        <AssociationConnector Association="Story.DBModel.FK_Chapters_Stories" />
+        <AssociationConnector Association="Story.DBModel.TagRel" />
+        <EntityTypeShape EntityType="Story.DBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Story.DBModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

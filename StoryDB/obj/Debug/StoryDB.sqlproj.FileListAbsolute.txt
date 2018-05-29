@@ -1,0 +1,16 @@
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.dacpac
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.dll
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.pdb
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.sqlprojResolveAssemblyReference.cache
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.dll
+C:\Users\Tsvetozar\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.pdb
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.dacpac
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.dll
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\bin\Debug\StoryDB.pdb
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.sqlprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\Model.xml
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\refactor.xml
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\postdeploy.sql
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\predeploy.sql
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.dll
+C:\Users\User\source\repos\ConciliatorsSite\StoryDB\obj\Debug\StoryDB.pdb

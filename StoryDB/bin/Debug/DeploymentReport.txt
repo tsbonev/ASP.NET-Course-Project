@@ -1,0 +1,23 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Category] (Table)
+       [dbo].[Chapter] (Table)
+       [dbo].[Story] (Table)
+       [dbo].[Tag] (Table)
+       [dbo].[TagRel] (Table)
+       [dbo].[FK_Chapters_Stories] (Foreign Key)
+       [dbo].[FK_Story_Category] (Foreign Key)
+       [dbo].[FK_TagRel_Stories] (Foreign Key)
+       [dbo].[FK_TagRel_Tags] (Foreign Key)
+
+** Supporting actions

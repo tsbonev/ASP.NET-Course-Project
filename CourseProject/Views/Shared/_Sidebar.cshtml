@@ -1,0 +1,23 @@
+﻿@using CourseProject.Models
+@using CourseProject.Helpers
+@model HomeViewModel
+
+<div class="col-xl-3 col-sm-12" id="aside-wrapper">
+
+    <aside class="col-sm-12" id="categories">
+        <ul class="category-ul">
+            <h4>Категории</h4>
+
+            @foreach (HomeCategoriesViewModel category in Model.CategoriesList)
+            {
+                <li><a href="Stories/Stories?Category=@category.Name">@category.Name</a></li>
+            }
+        </ul>
+
+        @if (!LoginUserSession.Current.IsAuthenticated)
+        {
+        <h4>@Html.ActionLink("Register", "Register", "User")</h4>
+        }
+
+    </aside>
+</div>

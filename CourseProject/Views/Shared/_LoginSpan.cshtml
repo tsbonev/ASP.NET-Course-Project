@@ -1,0 +1,85 @@
+﻿@using CourseProject.Models
+@using CourseProject.Helpers
+@model LoginViewModel
+
+@if (!LoginUserSession.Current.IsAuthenticated)
+{
+
+    using (Html.BeginForm("Login", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "login", @id = "login" }))
+    {
+        <div class="form-horizontal">
+
+            <div class="form-group loginGroup">
+
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
+                <div class="col-xl-3 col-sm-12 loginUsername">
+                    @Html.TextBoxFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                <div class="col-xl-3 col-sm-12 loginPassword">
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-xl-2 col-sm-12">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+
+            </div>
+
+            <b class="text=danger">
+                @TempData["Message"]
+            </b>
+
+        </div>
+
+
+    }
+}
+else
+{
+        <div class="login">
+            <b>Welcome, @Html.ActionLink(Model.FirstName, "ViewUser", LoginUserSession.Current.UserID, "User")</b>
+            <b> | </b>
+
+            @if (LoginUserSession.Current.IsAdministrator)
+    {
+        <i>Edit: </i>
+        @:&nbsp;
+        @Html.ActionLink("Stories", "EditStories", "Stories")
+        @:&nbsp;
+        @Html.ActionLink("Categories", "EditCategories", "Categories")
+        @:&nbsp;
+        @Html.ActionLink("Tags", "EditTags", "Stories")
+        @:&nbsp;
+        @Html.ActionLink("Users", "EditUsers", "Users")
+}
+else
+{
+        <i>View: </i>
+        @:&nbsp;
+        @Html.ActionLink("Likes", "ViewLikes", "User")
+        @:&nbsp;
+        @Html.ActionLink("Comments", "ViewComments", "User")
+}
+
+
+
+            <b> | </b>
+            @Html.ActionLink("Logout", "Logout", "User")
+
+            <br />
+            <b class="text=danger">
+                @TempData["Message"]
+            </b>
+
+        </div>
+
+
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
