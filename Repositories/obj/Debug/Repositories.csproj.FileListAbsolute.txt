@@ -1,0 +1,12 @@
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\Repositories.dll.config
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\Repositories.dll
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\Repositories.pdb
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\DataAccess.dll
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\EntityFramework.dll
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\EntityFramework.SqlServer.dll
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\DataAccess.pdb
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\EntityFramework.xml
+D:\UnitOfWorkSample_Completed\Repositories\bin\Debug\EntityFramework.SqlServer.xml
+D:\UnitOfWorkSample_Completed\Repositories\obj\Debug\Repositories.csprojResolveAssemblyReference.cache
+D:\UnitOfWorkSample_Completed\Repositories\obj\Debug\Repositories.dll
+D:\UnitOfWorkSample_Completed\Repositories\obj\Debug\Repositories.pdb

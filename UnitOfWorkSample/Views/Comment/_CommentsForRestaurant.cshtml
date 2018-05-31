@@ -1,0 +1,53 @@
+﻿@using UnitOfWorkSample.Helpers
+@using UnitOfWorkSample.Models
+@model List<CommentViewModel>
+
+
+<div>
+    <div>
+        <b>Comments:</b>
+    </div>
+
+    @if (LoginUserSession.Current.IsAuthenticated)
+    {
+        <div>
+            <a id="addComment" href="javascript:void(0)">Add New Comment</a>
+        </div>
+    }
+
+    <div id="divAddComment" style="display:none">
+        <textarea rows="3" cols="200" id="txtNewComment"></textarea>
+        <input type="button" id="btnSaveComment" class="btn-primary" value="Изпрати" />
+        <input type="button" id="btnCancelComment" class="btn-default" value="Отказ" />
+        @Html.Hidden("hdnRestaurantID", (int)ViewBag.RestaurantID)
+    </div>
+    <div class="">
+        @foreach (CommentViewModel item in Model)
+        {
+            <div>
+                <div class="row">
+                    <hr>
+                    <div class="col-md-8">
+                        @item.UserName
+                    </div>
+
+                    <div class="col-md-2">
+                        @item.DateCreated.ToShortDateString()
+                    </div>
+                    <div class="col-md-2">
+                        @if (@item.UserID == LoginUserSession.Current.UserID)
+                        {
+                            <a class="delComment btn btn-danger btn-sm" data-comment-id="@item.ID"
+                               href="javascript:void(0)" onclick="return confirm('Are you sure you to delete this comment?');">Delete</a>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @item.CommentText
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

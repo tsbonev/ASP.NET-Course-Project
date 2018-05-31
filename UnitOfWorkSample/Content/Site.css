@@ -1,0 +1,66 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+nav {
+    float: right;
+}
+.navbar-brand {
+    font-size: 2em !important;
+}
+.navbar.navbar-inverse {
+    background-color: #0064b4;
+}
+.navbar.navbar-inverse .navbar-brand,
+.navbar.navbar-inverse .nav a,
+.navbar.navbar-inverse .nav button  {
+    color: #FFF;
+}
+.navbar.navbar-inverse .nav li {
+    width: 40px;
+    line-height: 30px;
+}
+.navbar.navbar-inverse .nav a:hover {
+    color: #000;
+}
+/*.navbar-collapse > a {
+    display: inline-block;
+    width: 150px;
+    text-decoration: none;
+    color: #FFF;
+}*/
+.cell-small {
+    width: 60px;
+}
+.table-actions {
+    text-align: right;
+    margin-bottom: 10px;
+}
+.search-control {
+    width: 100%;
+    padding: 0 25px !important;
+}
+.search-control input {
+    width: 100%;
+    box-sizing:border-box;
+    min-width: 100% !important;
+    margin-top: 10px;
+}
+.navbar-name {
+    white-space: nowrap;
+    color: #fff;
+    padding: 0 15px;
+}

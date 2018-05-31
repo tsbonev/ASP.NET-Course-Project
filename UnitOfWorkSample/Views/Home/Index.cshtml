@@ -1,0 +1,17 @@
+﻿@using UnitOfWorkSample.Models
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="cycle-slideshow" data-cycle-slides="a" data-cycle-timeout="2000">
+    @foreach (HomeRestaurantViewModel restaurant in Model.RestaurantsList)
+    {
+        <a href="~/Restaurant/Details/@restaurant.ID">
+            <img src="@Url.Content(restaurant.ImagePath)" alt="Image" width="400" />
+        </a>
+    }
+</div>

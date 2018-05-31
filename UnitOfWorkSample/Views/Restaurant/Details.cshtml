@@ -1,0 +1,92 @@
+﻿@using UnitOfWorkSample.Models
+@model RestaurantViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section javascript
+{
+    <script>
+        $("document").ready(function () {
+            $("#addComment").click(function () {
+                $("#txtNewComment").val("");
+                $("#divAddComment").show();
+            });
+
+            $("#btnCancelComment").click(function () {
+                $("#divAddComment").hide();
+            });
+
+            $("#btnSaveComment").click(function () {
+                $.post("/Comment/AddComment", {
+                    text: $("#txtNewComment").val()
+                    , restaurantID: $("#hdnRestaurantID").val()
+                })
+                .done(function (data) {
+                    alert("Your comment was added successfully!");
+                    window.location.reload();
+                })
+                .fail(function () {
+                    alert("failed to add comment");
+                });
+            });
+
+            $(".delComment").click(function () {
+                $.post("/Comment/Delete", {
+                    id: $(this).attr("data-comment-id")
+                })
+                .done(function (data) {
+                    window.location.reload();
+                })
+                .fail(function () {
+                    alert("failed to delete comment");
+                });
+            });
+    });
+    </script>
+}
+
+<h2>Details</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-2" for="">Image</label>
+        <div class="col-md-10">
+            @if (Model.HasImage)
+            {
+                <img src="@Url.Content(Model.ImagePath)" width="300" alt="Image for @Model.Name" />
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="CategoryID">Category</label>
+        <div class="col-md-10">
+            @Model.CategoryName
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="CityID">City</label>
+        <div class="col-md-10">
+            @Model.CityName
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">Name</label>
+        <div class="col-md-10">
+            @Model.Name
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Description">Description</label>
+        <div class="col-md-10">
+            @Model.Description
+        </div>
+    </div>
+</div>
+
+@Html.Action("CommentsForRestaurant", "Comment", new { restaurantID = Model.ID })

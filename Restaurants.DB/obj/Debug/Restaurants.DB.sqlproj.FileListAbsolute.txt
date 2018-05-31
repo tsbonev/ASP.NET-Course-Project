@@ -1,0 +1,5 @@
+D:\UnitOfWorkSample_Completed\Restaurants.DB\bin\Debug\Restaurants.DB.dacpac
+D:\UnitOfWorkSample_Completed\Restaurants.DB\bin\Debug\Restaurants.Database.dll
+D:\UnitOfWorkSample_Completed\Restaurants.DB\bin\Debug\Restaurants.Database.pdb
+D:\UnitOfWorkSample_Completed\Restaurants.DB\obj\Debug\Restaurants.Database.dll
+D:\UnitOfWorkSample_Completed\Restaurants.DB\obj\Debug\Restaurants.Database.pdb

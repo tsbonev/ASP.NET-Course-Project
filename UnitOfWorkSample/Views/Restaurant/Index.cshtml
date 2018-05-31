@@ -1,0 +1,45 @@
+﻿@using UnitOfWorkSample.Models
+@model List<RestaurantViewModel>
+
+@{
+    ViewBag.Title = "Restaurants";
+}
+
+<h2>Restaurants</h2>
+
+@* show ErrorMessage or InfoMessage (usually when we delete/edit/etc.) *@
+@Html.Partial("_InfoMessages")
+
+
+<div class="table-actions">
+    @Html.ActionLink("Add New Restaurant", "Edit", "Restaurant", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Has Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>City Name</th>
+            <th>Category Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (RestaurantViewModel restaurant in Model)
+    {
+        <tr>
+            <td>@(restaurant.HasImage ? "Yes" : "No")</td>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Description</td>
+            <td>@restaurant.CityName</td>
+            <td>@restaurant.CategoryName</td>
+            <td class="cell-small">
+                @Html.ActionLink("Edit", "Edit", "Restaurant", new { id = restaurant.ID }, new { @class = "btn btn-primary btn-sm" })
+            </td>
+            <td class="cell-small">
+                @Html.ActionLink("Delete", "Delete", "Restaurant", new { id = restaurant.ID }, new { onclick = "return confirm('Are you sure you to delete this restaurant?');", @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

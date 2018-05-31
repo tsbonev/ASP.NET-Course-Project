@@ -1,0 +1,19 @@
+﻿
+@* Display the messages that added to the ViewBag
+This partial view has to be somewhere at the top of the page
+We create  a partial view to avoid copy-paste of similar code *@
+
+@{
+    if (string.IsNullOrEmpty(ViewBag.ErrorMessage) == false)
+    {
+        <h3>
+            <span class="label label-danger">@ViewBag.ErrorMessage</span>
+        </h3>
+    }
+    if (string.IsNullOrEmpty(ViewBag.Message) == false)
+    {
+        <h3>
+            <span class="label label-success">@ViewBag.Message</span>
+        </h3>
+    }
+}

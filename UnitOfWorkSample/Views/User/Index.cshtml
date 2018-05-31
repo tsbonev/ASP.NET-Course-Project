@@ -1,0 +1,30 @@
+﻿@using UnitOfWorkSample.Models
+@model List<UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+@Html.Partial("_InfoMessages")
+
+<div class="table-actions">
+    @Html.ActionLink("Add New User", "Edit", "User", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+<table class="table table-striped">
+    @foreach (UserViewModel user in Model)
+    {
+        <tr>
+            <td class="cell-small">@user.ID</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td class="cell-small">
+                @Html.ActionLink("Edit", "Edit", "User", new { id= user.ID }, new { @class = "btn btn-primary btn-sm" })
+            </td>
+            <td class="cell-small">
+                @Html.ActionLink("Delete", "Delete", "User", new { id = user.ID }, new { onclick = "return confirm('Are you sure you to delete this user?');" , @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

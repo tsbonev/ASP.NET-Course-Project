@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RestaurantsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="RestaurantsModel.Category" />
+    <EntitySet Name="Cities" EntityType="RestaurantsModel.City" />
+    <EntitySet Name="Comments" EntityType="RestaurantsModel.Comment" />
+    <EntitySet Name="Restaurants" EntityType="RestaurantsModel.Restaurant" />
+    <EntitySet Name="Users" EntityType="RestaurantsModel.User" />
+    <AssociationSet Name="FK_Restaurants_Categories" Association="RestaurantsModel.FK_Restaurants_Categories">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Restaurant" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurants_Cities" Association="RestaurantsModel.FK_Restaurants_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Restaurant" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Restaurants" Association="RestaurantsModel.FK_Comments_Restaurants">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Users" Association="RestaurantsModel.FK_Comments_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Restaurants" Relationship="RestaurantsModel.FK_Restaurants_Categories" FromRole="Category" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Restaurants" Relationship="RestaurantsModel.FK_Restaurants_Cities" FromRole="City" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantID" Type="Int32" Nullable="false" />
+    <Property Name="CommentText" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Restaurant" Relationship="RestaurantsModel.FK_Comments_Restaurants" FromRole="Comment" ToRole="Restaurant" />
+    <NavigationProperty Name="User" Relationship="RestaurantsModel.FK_Comments_Users" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="RestaurantsModel.FK_Restaurants_Categories" FromRole="Restaurant" ToRole="Category" />
+    <NavigationProperty Name="City" Relationship="RestaurantsModel.FK_Restaurants_Cities" FromRole="Restaurant" ToRole="City" />
+    <NavigationProperty Name="Comments" Relationship="RestaurantsModel.FK_Comments_Restaurants" FromRole="Restaurant" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdministrator" Type="Boolean" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="RestaurantsModel.FK_Comments_Users" FromRole="User" ToRole="Comment" />
+  </EntityType>
+  <Association Name="FK_Restaurants_Categories">
+    <End Type="RestaurantsModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="RestaurantsModel.Restaurant" Role="Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Restaurant">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurants_Cities">
+    <End Type="RestaurantsModel.City" Role="City" Multiplicity="1" />
+    <End Type="RestaurantsModel.Restaurant" Role="Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Restaurant">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_Restaurants">
+    <End Type="RestaurantsModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+    <End Type="RestaurantsModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="RestaurantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_Users">
+    <End Type="RestaurantsModel.User" Role="User" Multiplicity="1" />
+    <End Type="RestaurantsModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

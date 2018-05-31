@@ -1,0 +1,32 @@
+﻿@using UnitOfWorkSample.Models
+@model List<CategoryViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categories</h2>
+
+@* show ErrorMessage or InfoMessage (usually when we delete/edit/etc.) *@
+@Html.Partial("_InfoMessages")
+
+<div class="table-actions">
+    @Html.ActionLink("Add New Category", "Edit", "Category", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+<table class="table table-striped">
+    @foreach (CategoryViewModel category in Model)
+    {
+        <tr>
+            <td class="cell-small">@category.ID</td>
+            <td>@category.Name</td>
+            <td class="cell-small">
+                @*<button type="button" class="btn btn-primary btn-sm">Edit</button>*@
+                @Html.ActionLink("Edit", "Edit", "Category", new { id= category.ID }, new { @class = "btn btn-primary btn-sm" })
+            </td>
+            <td class="cell-small">
+                @*<button type="button" class="btn btn-danger btn-sm">Delete</button>*@
+                @Html.ActionLink("Delete", "Delete", "Category", new { id = category.ID }, new { onclick = "return confirm('Are you sure you to delete this category?');" , @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

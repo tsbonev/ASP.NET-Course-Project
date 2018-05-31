@@ -1,0 +1,72 @@
+﻿@using UnitOfWorkSample.Models
+@model RestaurantViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@if (Model.ID == 0)
+{
+    <h2>Create Restaurant</h2>
+}
+else
+{
+    <h2>Edit Restaurant</h2>
+}
+
+@using (Html.BeginForm("Edit", "Restaurant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.ID)
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="">Image</label>
+            <div class="col-md-10">
+                @if (Model.HasImage)
+                {
+                    <img src="@Url.Content(Model.ImagePath)" width="300" alt="Image for @Model.Name" />
+                }
+                <input type="file" name="imageToUpload" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CategoryID">Category</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryID, (IEnumerable<SelectListItem>)ViewBag.AllCategories, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="CityID">City</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CityID, (IEnumerable<SelectListItem>)ViewBag.AllCities, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Name">Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Description">Description</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Index", null,  new { @class= "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+</div>

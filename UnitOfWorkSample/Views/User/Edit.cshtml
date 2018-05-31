@@ -1,0 +1,53 @@
+﻿@using UnitOfWorkSample.Models
+@model UserViewModel
+
+@{
+    ViewBag.Title = (Model.ID == 0) ? "Create User" : "Edit User";
+}
+
+<h2> @ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "User"))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="FirstName">First Name</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.FirstName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="LastName">Last Name</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LastName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Username">Username</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Username)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Password">Password</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="IsAdministrator">Is Administrator</label>
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IsAdministrator)
+            </div>
+        </div>                
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
