@@ -88,19 +88,21 @@ namespace MVCCourseProject.Controllers
 
         public ActionResult DeleteChapter(int id = 0)
         {
-            bool isDeleted = uow.ChapterRepository.DeleteByID(id);
 
-            uow.Save();
+            Chapter chapter = uow.ChapterRepository.GetByID(id);
 
-            if (isDeleted == false)
+            if (null == chapter)
             {
+
                 TempData["ErrorMessage"] = "Could not find a chapter with ID = " + id;
             }
             else
             {
+                uow.ChapterRepository.DeleteByID(id);
                 TempData["Message"] = "The chapter was deleted successfully";
             }
 
+            uow.Save();
 
             return RedirectToAction("EditStories", "Stories");
         }

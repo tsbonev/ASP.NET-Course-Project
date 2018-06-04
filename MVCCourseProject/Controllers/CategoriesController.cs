@@ -33,9 +33,9 @@ namespace MVCCourseProject.Controllers
             }
             else
             {
-                foreach (Story story in category.Stories)
+                foreach (Story story in category.Stories.ToList())
                 {
-                    foreach (Chapter chapter in story.Chapters)
+                    foreach (Chapter chapter in story.Chapters.ToList())
                     {
                         uow.ChapterRepository.DeleteByID(chapter.ID);
                     }

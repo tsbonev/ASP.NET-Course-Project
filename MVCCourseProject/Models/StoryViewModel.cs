@@ -17,7 +17,12 @@ namespace MVCCourseProject.Models
         public string Name { get; set; }
         public bool HasImg { get; set; }
         public string Category { get; set; }
-        public string ImgLink { get; set; }
+        public string ImgLink
+        {
+            get;
+            set;
+        }
+
         public string Slug { get; set; }
     }
 
@@ -62,7 +67,7 @@ namespace MVCCourseProject.Models
                     item.HasImg = (story.ImgLink != null);
                     item.Category = story.StoryCategory.Name;
                     item.Name = story.Name;
-                    item.ImgLink = imageFullPath;
+                    item.ImgLink = imageFullPath.Replace(' ', '_');
                     item.Slug = story.Slug;
                     Stories.Add(item);
 

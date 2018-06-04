@@ -86,7 +86,7 @@ namespace MVCCourseProject.Models
             else
             {
 
-                foreach (Chapter chapter in story.Chapters)
+                foreach (Chapter chapter in story.Chapters.ToList())
                 {
                     uow.ChapterRepository.DeleteByID(chapter.ID);
                 }
@@ -130,7 +130,7 @@ namespace MVCCourseProject.Models
                 return RedirectToAction("Index");
             }
 
-            if (!viewModel.HasImage)
+            if (Request.Files.Count == 0 && !viewModel.HasImage)
             {
                 TempData["Message"] = "Story must have a valid image";
                 return RedirectToAction("Edit", viewModel.ID);
@@ -151,11 +151,10 @@ namespace MVCCourseProject.Models
                 HttpPostedFileBase file = Request.Files[0];
                 if (file.ContentLength != 0)
                 {
-                    string ImgLink = Server.MapPath(Constants.ImagesDirectory);
                     string uniqueFileName = string.Format("{0}_{1}", DateTime.Now.Millisecond, file.FileName);
-                    string savedFileName = Path.Combine(ImgLink, Path.GetFileName(uniqueFileName));
-                    file.SaveAs(savedFileName);
-                    dbStory.ImgLink = uniqueFileName;
+                    string savedFileName = Path.Combine(Server.MapPath(Constants.ImagesDirectory), Path.GetFileName(uniqueFileName));
+                    file.SaveAs(savedFileName.Replace(' ', '_'));
+                    dbStory.ImgLink = uniqueFileName.Replace(' ', '_');
                 }
             }
 
