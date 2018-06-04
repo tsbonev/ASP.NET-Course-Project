@@ -64,15 +64,13 @@ namespace Repositories
             }
         }
 
-        public bool DeleteByID(int id)
+        public void DeleteByID(int id)
         {
             T dbItem = Context.Set<T>().Find(id);
             if (dbItem != null)
             {
                 Context.Set<T>().Remove(dbItem);
-                return true;
             }
-            return false;
         }
 
         public abstract void Save(T item);

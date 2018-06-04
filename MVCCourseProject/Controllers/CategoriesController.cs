@@ -26,13 +26,33 @@ namespace MVCCourseProject.Controllers
         public ActionResult DeleteCategory(int id)
         {
             Category category = uow.CategoryRepository.GetByID(id);
-            uow.CategoryRepository.DeleteByID(id);
 
-            uow.Save();
+            if(null == category)
+            {
+                TempData["ErrorMessage"] = "Could not find a category with ID = " + id;
+            }
+            else
+            {
+                foreach (Story story in category.Stories)
+                {
+                    foreach (Chapter chapter in story.Chapters)
+                    {
+                        uow.ChapterRepository.DeleteByID(chapter.ID);
+                    }
+                    uow.StoryRepository.DeleteByID(story.ID);
+                }
 
-            uow.CategoryRepository.AdjustCategories(category.lft, category.rgt, false);
+                uow.CategoryRepository.DeleteByID(id);
 
-            uow.Save();
+                uow.Save();
+
+                uow.CategoryRepository.AdjustCategories(category.lft, category.rgt, false);
+
+                uow.Save();
+
+                TempData["Message"] = "The category was deleted successfully";
+            }
+            
 
             return RedirectToAction("EditCategories");
         }

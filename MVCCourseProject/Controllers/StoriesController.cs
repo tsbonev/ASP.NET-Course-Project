@@ -76,14 +76,25 @@ namespace MVCCourseProject.Models
 
         public ActionResult Delete(int id = 0)
         {
-            bool isDeleted = uow.StoryRepository.DeleteByID(id);
 
-            if (isDeleted == false)
+            Story story = uow.StoryRepository.GetByID(id);
+
+            if (null == story)
             {
                 TempData["ErrorMessage"] = "Could not find a story with ID = " + id;
             }
             else
             {
+
+                foreach (Chapter chapter in story.Chapters)
+                {
+                    uow.ChapterRepository.DeleteByID(chapter.ID);
+                }
+
+                uow.StoryRepository.DeleteByID(id);
+
+                uow.Save();
+
                 TempData["Message"] = "The story was deleted successfully";
             }
 
