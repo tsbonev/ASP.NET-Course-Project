@@ -17,9 +17,7 @@ namespace Repositories
 
         void Create(T item);
 
-        void Update(T item, Func<T, bool> findByIDPredacate);
-
-        bool DeleteByID(int id);
+        void Update(T item, Func<T, bool> findByIDPredecate);
 
     }
 }

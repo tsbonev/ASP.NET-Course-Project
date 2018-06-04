@@ -12,11 +12,16 @@ namespace Repositories
         where T : class
     {
 
-        protected StoryEntities Context;
+        private StoryEntities Context;
 
         public BaseRepository()
+            : this(new StoryEntities())
         {
-            Context = new StoryEntities();
+        }
+
+        public BaseRepository(StoryEntities context)
+        {
+            Context = context;
         }
 
         protected DbSet<T> DBSet
@@ -27,50 +32,47 @@ namespace Repositories
             }
         }
 
-        public void Create(T item)
-        {
-            Context.Set<T>().Add(item);
-            Context.SaveChanges();
-        }
-
         public List<T> GetAll()
         {
             return Context.Set<T>().ToList();
         }
-
         public T GetByID(int id)
         {
             return Context.Set<T>().Find(id);
         }
-
-
-        public void Update(T item, Func<T, bool> findByIDPredacate)
+        public void Create(T item)
         {
-            var local = Context.Set<T>().Local.FirstOrDefault(findByIDPredacate);
-
+            Context.Set<T>().Add(item);
+        }
+        public void Update(T item, Func<T, bool> findByIDPredecate)
+        {
+            var local = Context.Set<T>()
+                         .Local
+                         .FirstOrDefault(findByIDPredecate);
             if (local != null)
             {
-                Context.Entry(local).State = System.Data.Entity.EntityState.Detached;
+                Context.Entry(local).State = EntityState.Detached;
             }
-            Context.Entry(item).State = System.Data.Entity.EntityState.Modified;
-            Context.SaveChanges();
-
+            Context.Entry(item).State = EntityState.Modified;
         }
 
-        public bool DeleteByID(int id)
+        public void Delete(T obj)
         {
-            bool isDeleted = false;
+            if (obj != null)
+            {
+                Context.Set<T>().Remove(obj);
+            }
+        }
+
+        public void DeleteByID(int id)
+        {
             T dbItem = Context.Set<T>().Find(id);
             if (dbItem != null)
             {
                 Context.Set<T>().Remove(dbItem);
-                int recordsChanged = Context.SaveChanges();
-                isDeleted = recordsChanged > 0;
             }
-            return isDeleted;
         }
 
         public abstract void Save(T item);
-
     }
 }

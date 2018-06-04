@@ -9,8 +9,15 @@ namespace Repositories
 {
     public class StoryRepository : BaseRepository<Story>
     {
+
+        public StoryRepository(StoryEntities context)
+            : base(context)
+        {
+        }
+
         public override void Save(Story story)
         {
+
             if (story.ID == 0)
             {
                 base.Create(story);
