@@ -19,6 +19,7 @@ namespace Repositories
 
 
         private StoryRepository storyRepository;
+        private CategoryRepository categoryRepository;
 
         public StoryRepository StoryRepository
         {
@@ -29,6 +30,18 @@ namespace Repositories
                     this.storyRepository = new StoryRepository(context);
                 }
                 return storyRepository;
+            }
+        }
+
+        public CategoryRepository CategoryRepository
+        {
+            get
+            {
+                if (this.categoryRepository == null)
+                {
+                    this.categoryRepository = new CategoryRepository(context);
+                }
+                return categoryRepository;
             }
         }
 

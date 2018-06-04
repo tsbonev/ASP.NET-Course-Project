@@ -8,8 +8,14 @@ using DataAccess;
 
 namespace Repositories
 {
-    class CategoryRepository : BaseRepository<Category>
+    public class CategoryRepository : BaseRepository<Category>
     {
+
+
+        public CategoryRepository(StoryEntities context)
+            : base(context)
+        {
+        }
 
         public List<int> GetCategoryTree(int category)
         {
