@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветозар Бонев</title>
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+    <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-12" id="wrapper">
+
+        @Html.Partial("_Header")
+
+        <div id="LoginSpan">
+
+        </div>
+
+        <div class="row">
+            @RenderBody()
+        </div>
+
+        @Html.Partial("_Footer")
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+</body>
+</html>

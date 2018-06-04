@@ -49,39 +49,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs">
+      <DependentUpon>StoryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Chapter.cs">
+      <DependentUpon>StoryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Story.cs">
+      <DependentUpon>StoryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="StoryModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StoryModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StoryModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StoryModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StoryModel.edmx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="StoryModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StoryModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="User.cs">
+      <DependentUpon>StoryModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="StoryModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StoryModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="StoryModel.edmx.diagram">
       <DependentUpon>StoryModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="StoryModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StoryModel.Context.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="StoryModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StoryModel.edmx</DependentUpon>
+      <LastGenOutput>StoryModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="StoryModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StoryModel.edmx</DependentUpon>
+      <LastGenOutput>StoryModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

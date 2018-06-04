@@ -1,0 +1,311 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/* Body and Wrapeprs */
+body, html {
+    background-color: #292C37;
+    font-family: 'Lora';
+}
+
+#wrapper {
+    margin-top: 3.5em;
+    padding: 2em 3.5em;
+    background-color: white;
+}
+
+/* Headings */
+
+h1, h3 {
+    font-family: 'Vollkron';
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #1376A4;
+}
+
+h2 {
+    font-size: 1.1em;
+    color: #9999A6;
+}
+
+h3 {
+    font-size: 2em;
+    color: #666677;
+}
+
+h4 {
+    font-size: 1.5em;
+    color: #555555;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav div {
+    display: inline-block;
+}
+
+nav li {
+    text-transform: uppercase;
+    font-size: 1.3em;
+    display: inline;
+}
+
+nav ul:before, nav ul:after, footer:before {
+    margin: 1em 0;
+    content: ' ';
+    background-color: #CCCCCC;
+    display: block;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: #CCCCCC;
+}
+
+/* Car */
+
+.story {
+    height: auto;
+    width: 100%;
+}
+
+.story-link, .slide-active {
+    float: left;
+    padding: 1em;
+    display: inline-block;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    width: 100%;
+    margin: 0px;
+}
+
+/* Sections */
+
+#story-body {
+    padding-left: 0;
+    text-align: justify;
+}
+
+p {
+    color: #666666;
+    font-size: 1.2em;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Aside */
+
+aside ul {
+    padding-left: 1em;
+    list-style-type: none;
+}
+
+ul li {
+    display: block;
+}
+
+button {
+    margin-top: 1em;
+}
+
+input {
+    width: 100%;
+}
+
+.category-ul {
+    padding: 0;
+}
+
+
+/* Footer */
+
+footer ul, li, #copyright {
+    display: inline;
+}
+
+footer li {
+    margin-left: 2em;
+    float: right;
+}
+
+/* About */
+
+#about-body {
+    text-align: center;
+}
+
+    #about-body p {
+        color: #222222;
+    }
+
+    #about-body img {
+        margin-top: 0.5em;
+        width: 100%;
+        height: auto;
+    }
+
+/* Contact */
+
+#contact {
+    margin-top: 1.5em;
+}
+
+    #contact p {
+        margin: 0;
+    }
+
+    #contact textarea {
+        width: 100%;
+        height: 19em;
+        resize: none;
+    }
+
+    #contact input {
+        margin-bottom: 1em;
+    }
+
+/* Stories Gallery */
+
+#stories-gallery, #car {
+    padding: 0px;
+}
+
+    #stories-gallery img {
+        width: 100%;
+        height: auto;
+    }
+
+.story-link:hover {
+    background: #FF9016;
+}
+
+.dropdown {
+    padding: 1em;
+}
+
+    .dropdown select {
+        width: 100%;
+    }
+
+#thumbnail h3 {
+    font-size: 4em;
+}
+
+#thumbnail {
+    margin: 1.2em 0;
+    text-align: center;
+}
+
+    #thumbnail img {
+        width: 70%;
+        height: auto;
+    }
+
+/* Misc */
+
+.row {
+    margin-top: 0.7em;
+}
+
+.hidden {
+    display: none;
+}
+
+.floatright {
+    float: right;
+}
+
+/* Media */
+
+@media (max-width: 550px) {
+
+    #wrapper {
+        padding: 0 1em;
+        margin-top: 0;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    #story-body {
+        padding: 0;
+    }
+}
+
+
+/* Login */
+
+.login {
+    padding: 0.5em;
+    background: #8e97ba;
+    color: white;
+    display: block;
+}
+
+    .login a {
+        color: aliceblue;
+    }
+
+        .login a:hover {
+            color: burlywood;
+        }
+
+.loginGroup {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.loginButton {
+    text-align: right;
+}
+
+.loginGroup div {
+    display: inline-block;
+}
+
+
+/* Chapter Form */
+
+#Text {
+    width: 100%;
+    height: 18em;
+}
