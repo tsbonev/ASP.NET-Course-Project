@@ -7,8 +7,6 @@ using Repositories;
 using DataAccess;
 using MVCCourseProject.Models;
 using MVCCourseProject.Helpers;
-using DataAccess;
-using Repositories;
 using System.IO;
 
 namespace MVCCourseProject.Models
@@ -48,6 +46,11 @@ namespace MVCCourseProject.Models
         [HttpPost]
         public ActionResult Index(SearchViewModel searchModel)
         {
+
+            if(searchModel.Story == null)
+            {
+                searchModel.Story = "";
+            }
 
             List<Category> categories = uow.CategoryRepository.GetAll();
 

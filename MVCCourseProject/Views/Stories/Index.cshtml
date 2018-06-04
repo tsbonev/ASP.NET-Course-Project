@@ -4,7 +4,7 @@
 <div class="dropdown col-xl-12">
 
 
-    @using (Html.BeginForm("Index", "Stories", FormMethod.Post))
+    @using (Html.BeginForm("Index", "Stories", FormMethod.Get))
     {
         <text>Story: </text> @Html.TextBoxFor(s => s.Story)
         <br />
