@@ -164,6 +164,9 @@
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_LoginSpan.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Categories\AddCategory.cshtml" />
+    <Content Include="Views\Categories\EditCategories.cshtml" />
+    <Content Include="Views\Categories\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -202,7 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\Stories\" />
   </ItemGroup>
   <ItemGroup>

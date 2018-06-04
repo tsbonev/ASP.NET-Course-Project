@@ -27,8 +27,13 @@ namespace MVCCourseProject.Controllers
         {
             Category category = uow.CategoryRepository.GetByID(id);
             uow.CategoryRepository.DeleteByID(id);
-            uow.CategoryRepository.AdjustCategories(category.lft, category.rgt, false);
+
             uow.Save();
+
+            uow.CategoryRepository.AdjustCategories(category.lft, category.rgt, false);
+
+            uow.Save();
+
             return RedirectToAction("EditCategories");
         }
 
@@ -57,13 +62,18 @@ namespace MVCCourseProject.Controllers
         public ActionResult AddCategory()
         {
             ViewBag.AllCategories = new SelectList(uow.CategoryRepository.GetAll(), "rgt", "Name");
-            Category category = new Category();
-            return View(category);
+            CategoryViewModel model = new CategoryViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddCategory(Category category)
+        public ActionResult AddCategory(CategoryViewModel model)
         {
+
+            Category category = new Category();
+            category.Name = model.Name;
+            category.lft = model.lft;
+
             uow.CategoryRepository.AdjustCategories(category.lft, category.rgt, true);
             uow.CategoryRepository.Save(category);
 

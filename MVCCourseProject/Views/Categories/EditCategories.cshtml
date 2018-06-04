@@ -1,0 +1,49 @@
+﻿@using MVCCourseProject.Models;
+@model CategoryViewModel
+
+@{
+    ViewBag.Title = "Edit Categories";
+}
+
+@{
+    if (string.IsNullOrEmpty(ViewBag.ErrorMessage) == false)
+    {
+        <div>@ViewBag.ErrorMessage</div>
+    }
+    if (string.IsNullOrEmpty(ViewBag.Message) == false)
+    {
+        <div>@ViewBag.Message</div>
+    }
+}
+
+<div class="table-actions">
+    <h2> Categories </h2>
+    @Html.ActionLink("Add New Category", "AddCategory", "Categories", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Left Value</th>
+            <th>Right Value</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (CategoriesViewModel category in Model.Categories.OrderBy(c => c.lft))
+    {
+        <tr>
+            <td>@category.ID</td>
+            <td>@category.Name</td>
+            <td>@category.lft</td>
+            <td>@category.rgt</td>
+            <td class="cell-small">
+                @Html.ActionLink("Edit", "EditCategory", "Categories", new { id = category.ID }, new { @class = "btn btn-primary btn-sm" })
+            </td>
+            <td class="cell-small">
+                @Html.ActionLink("Delete", "DeleteCategory", "Categories", new { id = category.ID }, new { onclick = "return confirm('Are you sure you to delete this category?');", @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>
