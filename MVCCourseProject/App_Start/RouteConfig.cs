@@ -15,8 +15,14 @@ namespace MVCCourseProject
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index"}
+            );
+
+            routes.MapRoute(
+                name: "Stories",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Stories", action = "Index" }
             );
         }
     }
