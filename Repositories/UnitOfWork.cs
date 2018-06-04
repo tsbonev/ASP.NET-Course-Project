@@ -21,6 +21,7 @@ namespace Repositories
         private StoryRepository storyRepository;
         private CategoryRepository categoryRepository;
         private ChapterRepository chapterRepository;
+        private UserRepository userRepository;
 
         public StoryRepository StoryRepository
         {
@@ -55,6 +56,18 @@ namespace Repositories
                     this.chapterRepository = new ChapterRepository(context);
                 }
                 return chapterRepository;
+            }
+        }
+
+        public UserRepository UserRepository
+        {
+            get
+            {
+                if (this.userRepository == null)
+                {
+                    this.userRepository = new UserRepository(context);
+                }
+                return userRepository;
             }
         }
 
