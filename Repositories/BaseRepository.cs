@@ -12,7 +12,7 @@ namespace Repositories
         where T : class
     {
 
-        private StoryEntities Context;
+        protected StoryEntities Context;
 
         public BaseRepository()
             : this(new StoryEntities())
