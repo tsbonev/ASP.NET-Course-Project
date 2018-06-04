@@ -17,7 +17,10 @@ namespace MVCCourseProject.Controllers
         public ActionResult Index()
         {
 
-            return View();
+            Chapter CurrentChapter = uow.ChapterRepository.Current();
+            HomeViewModel model = new HomeViewModel(CurrentChapter);
+
+            return View(model);
         }
 
         public ActionResult AccessDenied()

@@ -20,6 +20,7 @@ namespace Repositories
 
         private StoryRepository storyRepository;
         private CategoryRepository categoryRepository;
+        private ChapterRepository chapterRepository;
 
         public StoryRepository StoryRepository
         {
@@ -44,7 +45,18 @@ namespace Repositories
                 return categoryRepository;
             }
         }
-
+        
+        public ChapterRepository ChapterRepository
+        {
+            get
+            {
+                if (this.chapterRepository == null)
+                {
+                    this.chapterRepository = new ChapterRepository(context);
+                }
+                return chapterRepository;
+            }
+        }
 
         private bool disposed = false;
 
