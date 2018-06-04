@@ -65,19 +65,6 @@ namespace MVCCourseProject.Models
             return View(searchModel);
         }
 
-        [AllowAnonymous]
-        public ActionResult ViewStoryChapters(string Story)
-        {
-
-            Story story = uow.StoryRepository.GetBySlug(Story);
-
-            List<Chapter> chapters = uow.ChapterRepository.GetChaptersByStoryId(story.ID);
-
-            ChapterViewModel model = new ChapterViewModel(chapters);
-
-            return View(model);
-        }
-
         public ActionResult EditStories()
         {
             StoryViewModel stories = new StoryViewModel(uow.StoryRepository.GetAll());
@@ -165,6 +152,19 @@ namespace MVCCourseProject.Models
             TempData["Message"] = "The story was saved successfully";
             return RedirectToAction("Index");
 
+        }
+
+        [AllowAnonymous]
+        public ActionResult ViewStoryChapters(string Story)
+        {
+
+            Story story = uow.StoryRepository.GetBySlug(Story);
+
+            List<Chapter> chapters = uow.ChapterRepository.GetChaptersByStoryId(story.ID);
+
+            ChapterViewModel model = new ChapterViewModel(chapters);
+
+            return View(model);
         }
 
 

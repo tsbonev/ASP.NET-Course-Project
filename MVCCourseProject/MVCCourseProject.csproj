@@ -167,10 +167,17 @@
     <Content Include="Views\Categories\AddCategory.cshtml" />
     <Content Include="Views\Categories\EditCategories.cshtml" />
     <Content Include="Views\Categories\EditCategory.cshtml" />
+    <Content Include="Views\Stories\Edit.cshtml" />
+    <Content Include="Views\Stories\EditStories.cshtml" />
+    <Content Include="Views\Chapter\ViewChapter.cshtml" />
+    <Content Include="Views\Chapter\ViewChapters.cshtml" />
+    <Content Include="Views\Chapter\EditChapter.cshtml" />
+    <Content Include="Views\Stories\ViewStoryChapters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ChapterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,7 +215,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Stories\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
