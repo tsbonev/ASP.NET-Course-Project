@@ -180,11 +180,14 @@
     <Compile Include="Helpers\CustomPasswordAttribute.cs" />
     <Compile Include="Helpers\LoginUserSession.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\ChapterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Controllers\StoriesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\StoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

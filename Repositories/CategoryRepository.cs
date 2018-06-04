@@ -17,9 +17,9 @@ namespace Repositories
         {
         }
 
-        public List<int> GetCategoryTree(int category)
+        public List<int> GetCategoryTree(string category)
         {
-            Category parent = Context.Categories.Where(p => p.ID == category).Select(p => p).FirstOrDefault();
+            Category parent = Context.Categories.Where(p => p.Name == category).Select(p => p).FirstOrDefault();
 
             List<int> categories = Context.Categories.Where(p => p.lft > parent.lft && p.lft < parent.rgt).Select(p => p.ID).ToList();
 
