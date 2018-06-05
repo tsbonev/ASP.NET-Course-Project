@@ -37,6 +37,12 @@ namespace MVCCourseProject.Controllers
                 {
                     foreach (Chapter chapter in story.Chapters.ToList())
                     {
+
+                        foreach (User user in chapter.Likes.ToList())
+                        {
+                            chapter.Likes.Remove(user);
+                        }
+
                         uow.ChapterRepository.DeleteByID(chapter.ID);
                     }
                     uow.StoryRepository.DeleteByID(story.ID);

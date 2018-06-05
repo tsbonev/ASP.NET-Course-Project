@@ -34,6 +34,13 @@ namespace MVCCourseProject.Controllers
 
             ChapterViewModel model = new ChapterViewModel(story.Chapters.Where(c => c.Slug == slugs[1]).FirstOrDefault());
 
+            if (LoginUserSession.Current.IsAuthenticated)
+            {
+                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
+                Chapter chapter = uow.ChapterRepository.GetByID(model.ID);
+                model.LikesThis = user.Likes.Contains(chapter) ? true : false;
+            }
+
             return View(model);
 
         }
@@ -93,11 +100,16 @@ namespace MVCCourseProject.Controllers
 
             if (null == chapter)
             {
-
                 TempData["ErrorMessage"] = "Could not find a chapter with ID = " + id;
             }
             else
             {
+
+                foreach(User user in chapter.Likes.ToList())
+                {
+                    chapter.Likes.Remove(user);
+                }
+
                 uow.ChapterRepository.DeleteByID(id);
                 TempData["Message"] = "The chapter was deleted successfully";
             }

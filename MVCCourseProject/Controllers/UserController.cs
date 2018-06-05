@@ -129,61 +129,45 @@ namespace MVCCourseProject.Models
 
         }
 
-        public void Like(int chapterID)
+        [HttpGet]
+        public ActionResult Like(bool dislike, int id)
         {
 
             if (LoginUserSession.Current.IsAuthenticated)
             {
-                Chapter chapter = uow.ChapterRepository.GetByID(chapterID);
+                Chapter chapter = uow.ChapterRepository.GetByID(id);
                 User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
 
                 if (user != null && chapter != null)
                 {
-                    chapter.Likes.Add(user);
-                    user.Likes.Add(chapter);
+                    if (dislike)
+                    {
+                        chapter.Likes.Remove(user);
+                        user.Likes.Remove(chapter);
+                    }
+                    else
+                    {
+                        chapter.Likes.Add(user);
+                        user.Likes.Add(chapter);
+                    }
+                    
 
                     uow.Save();
 
-                    TempData["Message"] = "Successfully liked " + chapter.ChapterName;
-                    //return RedirectToAction("ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug });
+                    string liked = dislike ? "disliked" : "liked";
 
+                    TempData["Message"] = "Successfully " + liked + " " + chapter.ChapterName;
+                    return RedirectToAction("ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug });
 
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Failed to like";
+                    TempData["ErrorMessage"] = "Something went wrong, failed to like";
                 }
+
             }
 
-            //return RedirectToAction("Index", "Home");
-
-        }
-
-        public void Unlike(int chapterID)
-        {
-            if (LoginUserSession.Current.IsAuthenticated)
-            {
-                Chapter chapter = uow.ChapterRepository.GetByID(chapterID);
-                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
-
-                if (user != null && chapter != null)
-                {
-                    chapter.Likes.Remove(user);
-                    user.Likes.Remove(chapter);
-
-                    uow.Save();
-
-                    TempData["Message"] = "Successfully unliked " + chapter.ChapterName;
-                    //return RedirectToAction("ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug });
-
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failed to unlike";
-                }
-            }
-
-            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
 
         }
 

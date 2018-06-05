@@ -34,6 +34,8 @@ namespace MVCCourseProject.Models
 
         public int ID { get; set; }
 
+        public bool LikesThis { get; set; }
+
         [Required]
         public int ChapterNum { get; set; }
 

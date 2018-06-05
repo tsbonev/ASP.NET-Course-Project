@@ -14,17 +14,17 @@
     @if (LoginUserSession.Current.IsAuthenticated)
     {
 
-        if (LoginUserSession.Current.UserDB.Likes.Where(c => c.ID == Model.ID).FirstOrDefault() == null)
+        if (!Model.LikesThis)
         {
             @:&nbsp;
             @:&nbsp;
-            @Html.ActionLink("Like", "Like", "User", new { Model.ID })
+            @Html.ActionLink("Like", "Like", "User", new { dislike = false, id = Model.ID }, null)
         }
         else
         {
             @:&nbsp;
             @:&nbsp;
-            @Html.ActionLink("Unlike", "Unlike", "User", new { Model.ID })
+            @Html.ActionLink("Unlike", "Like", "User", new { dislike = true, id = Model.ID }, null)
         }
 
     }

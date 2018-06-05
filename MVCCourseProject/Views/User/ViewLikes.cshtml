@@ -30,7 +30,7 @@
                 <td>@chapter.DateCreated</td>
                 <td>@chapter.ChapterNum</td>
                 <td>@chapter.ChapterName</td>
-                <td>@Html.ActionLink("Go to", "ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug})</td>
+                <td>@Html.ActionLink("Go to", "ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug}, null)</td>
             </tr>
         }
 

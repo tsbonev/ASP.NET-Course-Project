@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Repositories;
 using DataAccess;
-using MVCCourseProject.Models;
 using MVCCourseProject.Helpers;
 using System.IO;
 
