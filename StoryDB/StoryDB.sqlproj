@@ -67,4 +67,7 @@
     <Build Include="dbo\Tables\Chapter.sql" />
     <Build Include="dbo\Tables\Category.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Tables\PostDepl.sql" />
+  </ItemGroup>
 </Project>
