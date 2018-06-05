@@ -1,0 +1,40 @@
+﻿@using MVCCourseProject.Models
+@model ChapterViewModel
+
+@{
+    ViewBag.Title = "ViewLikes";
+}
+
+<h2>ViewLikes</h2>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+            <th>Story</th>
+            <th>Date</th>
+            <th>Chapter Number</th>
+            <th>Chapter Name</th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (ChaptersViewModel chapter in Model.chapters)
+        {
+            <tr>
+                <td>@chapter.Story.Name</td>
+                <td>@chapter.DateCreated</td>
+                <td>@chapter.ChapterNum</td>
+                <td>@chapter.ChapterName</td>
+                <td>@Html.ActionLink("Go to", "ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug}, null)</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

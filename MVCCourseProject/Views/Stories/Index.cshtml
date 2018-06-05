@@ -1,0 +1,35 @@
+﻿@using MVCCourseProject.Models
+@model SearchViewModel
+
+<div class="dropdown col-xl-12">
+
+
+    @using (Html.BeginForm("Index", "Stories", FormMethod.Get))
+    {
+        <text>Story: </text> @Html.TextBoxFor(s => s.Story)
+        <br />
+        <text>Category: </text>
+
+        @Html.DropDownListFor(c => c.Category, new SelectList(Model.Categories, "Name", "Name"))
+
+        @* @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.AllCategories, "Select Category") *@
+
+
+        <input type="submit" value="Search" />
+    }
+
+</div>
+
+<div class="col-xl-12" id="stories-gallery">
+
+    @foreach (StoriesViewModel story in Model.Stories.Stories)
+    {
+        <div class="story-link col-xl-6 col-md-12">
+            <b>@story.Name</b>
+            <a class="Slug" href="@Url.Action("ViewStoryChapters", "Stories", new { Story = @story.Slug })">
+                <img src=@story.ImgLink alt="Image1">
+            </a>
+        </div>
+    }
+
+</div>

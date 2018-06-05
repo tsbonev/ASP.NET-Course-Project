@@ -1,0 +1,15 @@
+﻿@using MVCCourseProject.Models
+@model ChapterViewModel
+
+
+<div class="list-group">
+
+    @foreach (ChaptersViewModel chapter in Model.chapters)
+    {
+        <h1>
+            <a href="@Url.Action("ViewChapter", "Chapter", new { Chapter = Request.QueryString["Story"] + "-" + chapter.Slug })"> @chapter.ChapterNum : @chapter.ChapterName</a>
+        </h1>
+        <br />
+    }
+
+</div>

@@ -1,0 +1,32 @@
+﻿@using MVCCourseProject.Models
+@using MVCCourseProject.Helpers
+@model ChapterViewModel
+
+
+<div class="row">
+    <h1 class="col-12">@Model.ChapterName</h1>
+
+    <p class="col-12">@Model.Text</p>
+
+    <b>Likes: @Model.Likes</b>
+    <br />
+
+    @if (LoginUserSession.Current.IsAuthenticated)
+    {
+
+        if (!Model.LikesThis)
+        {
+            @:&nbsp;
+            @:&nbsp;
+            @Html.ActionLink("Like", "Like", "User", new { dislike = false, id = Model.ID }, null)
+        }
+        else
+        {
+            @:&nbsp;
+            @:&nbsp;
+            @Html.ActionLink("Unlike", "Like", "User", new { dislike = true, id = Model.ID }, null)
+        }
+
+    }
+
+</div>

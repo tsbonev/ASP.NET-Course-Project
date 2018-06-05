@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce5e7dc5efbf40368dbddb77754ce9e1" Name="Diagram1">
+        <EntityTypeShape EntityType="Story.DBModel.Category" Width="1.5" PointX="1" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Story.DBModel.Chapter" Width="1.5" PointX="6.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Story.DBModel.Story" Width="1.5" PointX="3.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Story.DBModel.User" Width="1.5" PointX="11.75" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="Story.DBModel.FK_Story_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Story.DBModel.FK_Chapters_Stories" ManuallyRouted="false" />
+        <AssociationConnector Association="Story.DBModel.Like" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

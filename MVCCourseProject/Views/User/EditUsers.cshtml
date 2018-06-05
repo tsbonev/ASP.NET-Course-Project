@@ -1,0 +1,43 @@
+﻿@using MVCCourseProject.Models
+@model UserViewModel
+
+
+@{
+    ViewBag.Title = "EditUsers";
+}
+
+<h2>EditUsers</h2>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>isAdmin</th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (UsersViewModel user in Model.Users)
+        {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.IsAdmin</td>
+                <td class="cell-small">
+                    @if (!user.IsAdmin)
+                    {
+                        @Html.ActionLink("Delete", "DeleteUser", "User", new { id = user.ID }, new { onclick = "return confirm('Are you sure you to delete this user?');", @class = "btn btn-danger btn-sm" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
