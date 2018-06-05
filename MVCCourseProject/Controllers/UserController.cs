@@ -50,6 +50,7 @@ namespace MVCCourseProject.Models
                 else
                 {
                     ModelState.AddModelError("", "Invalid username and/or password");
+                    TempData["Message"] = "Wrong username or password!";
                 }
             }
 
@@ -96,6 +97,128 @@ namespace MVCCourseProject.Models
             {
                 return View();
             }
+        }
+
+        public ActionResult ViewLikes()
+        {
+            if (LoginUserSession.Current.IsAuthenticated)
+            {
+                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
+
+                ChapterViewModel model = new ChapterViewModel(user.Likes.ToList());
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult ViewUser()
+        {
+            if (LoginUserSession.Current.IsAuthenticated)
+            {
+                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
+
+                UserViewModel model = new UserViewModel(user);
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        public void Like(int chapterID)
+        {
+
+            if (LoginUserSession.Current.IsAuthenticated)
+            {
+                Chapter chapter = uow.ChapterRepository.GetByID(chapterID);
+                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
+
+                if (user != null && chapter != null)
+                {
+                    chapter.Likes.Add(user);
+                    user.Likes.Add(chapter);
+
+                    uow.Save();
+
+                    TempData["Message"] = "Successfully liked " + chapter.ChapterName;
+                    //return RedirectToAction("ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug });
+
+
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failed to like";
+                }
+            }
+
+            //return RedirectToAction("Index", "Home");
+
+        }
+
+        public void Unlike(int chapterID)
+        {
+            if (LoginUserSession.Current.IsAuthenticated)
+            {
+                Chapter chapter = uow.ChapterRepository.GetByID(chapterID);
+                User user = uow.UserRepository.GetByID(LoginUserSession.Current.UserID);
+
+                if (user != null && chapter != null)
+                {
+                    chapter.Likes.Remove(user);
+                    user.Likes.Remove(chapter);
+
+                    uow.Save();
+
+                    TempData["Message"] = "Successfully unliked " + chapter.ChapterName;
+                    //return RedirectToAction("ViewChapter", "Chapter", new { Chapter = chapter.Story.Slug + "-" + chapter.Slug });
+
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failed to unlike";
+                }
+            }
+
+            //return RedirectToAction("Index", "Home");
+
+        }
+
+        [CustomAuthorize]
+        public ActionResult EditUsers()
+        {
+            UserViewModel users = new UserViewModel(uow.UserRepository.GetAll());
+            return View(users);
+        }
+
+        [CustomAuthorize]
+        public ActionResult DeleteUser(int id)
+        {
+            User user = uow.UserRepository.GetByID(id);
+
+            if(null != user)
+            {
+                List<Chapter> chapterList = uow.ChapterRepository.GetAll().Where(c => c.Likes.Equals(user)).ToList();
+                foreach (Chapter chapter in chapterList)
+                {
+                    chapter.Likes.Remove(user);
+                }
+
+                uow.UserRepository.DeleteByID(id);
+
+                uow.Save();
+
+                TempData["Message"] = "Successfully deleted user";
+
+            }
+
+            TempData["ErrorMessage"] = "User deletion unsuccessful";
+
+            return RedirectToAction("EditUsers");
+
         }
 
     }

@@ -17,6 +17,8 @@ namespace MVCCourseProject.Models
         public int ChapterNum { get; set; }
         public string Slug { get; set; }
         public DateTime DateCreated { get; set; }
+        public Story Story { get; set; }
+        public int Likes { get; set; }
     }
 
     public class ChapterViewModel
@@ -28,6 +30,7 @@ namespace MVCCourseProject.Models
         public string ChapterName { get; set; }
 
         public int StoryID { get; set; }
+        public Story Story { get; set; }
 
         public int ID { get; set; }
 
@@ -42,6 +45,8 @@ namespace MVCCourseProject.Models
 
         public DateTime DateCreated { get; set; }
 
+        public int Likes { get; set; }
+
         public ChapterViewModel()
         {
             chapters = new List<ChaptersViewModel>();
@@ -55,6 +60,8 @@ namespace MVCCourseProject.Models
             this.ChapterNum = chapter.ChapterNum;
             this.Slug = chapter.Slug;
             this.Text = chapter.Text;
+            this.Story = chapter.Story;
+            this.Likes = chapter.Likes.Count;
         }
 
 
@@ -72,6 +79,8 @@ namespace MVCCourseProject.Models
                     temp.ChapterNum = chapter.ChapterNum;
                     temp.Slug = chapter.Slug;
                     temp.DateCreated = chapter.DateCreated;
+                    temp.Story = chapter.Story;
+                    temp.Likes = chapter.Likes.Count;
                     chapters.Add(temp);
                 }
             }

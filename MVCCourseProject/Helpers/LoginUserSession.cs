@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DataAccess;
+using Repositories;
 
 namespace MVCCourseProject.Helpers
 {
@@ -10,6 +12,7 @@ namespace MVCCourseProject.Helpers
 
         public int UserID { get; set; }
         public string Username { get; set; }
+        public User UserDB { get; set; }
 
         public bool IsAuthenticated { get; set; }
         public bool IsAdministrator { get; set; }
@@ -39,6 +42,7 @@ namespace MVCCourseProject.Helpers
             this.IsAdministrator = adminCheck;
             this.UserID = userID;
             this.Username = username;
+            this.UserDB = new UnitOfWork().UserRepository.GetByID(UserID);
         }
 
         public void Logout()
@@ -47,6 +51,7 @@ namespace MVCCourseProject.Helpers
             this.IsAdministrator = false;
             this.UserID = -1;
             this.Username = string.Empty;
+            this.UserDB = null;
         }
 
 

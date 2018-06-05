@@ -29,6 +29,7 @@
             <th>Name</th>
             <th>Chapter Number</th>
             <th>Slug</th>
+            <th>Likes</th>
             <th></th>
             <th></th>
         </tr>
@@ -41,6 +42,7 @@
             <td>@chapter.ChapterName</td>
             <td>@chapter.ChapterNum</td>
             <td>@chapter.Slug</td>
+            <td>@chapter.Likes</td>
             <td class="cell-small">
                 @Html.ActionLink("Edit", "EditChapter", "Chapter", new { id = chapter.ID }, new { @class = "btn btn-primary btn-sm" })
             </td>

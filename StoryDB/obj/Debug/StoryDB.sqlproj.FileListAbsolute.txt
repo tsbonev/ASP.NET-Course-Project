@@ -3,3 +3,4 @@ C:\Users\User\source\repos\MVCCourseProject\StoryDB\bin\Debug\StoryDB.dll
 C:\Users\User\source\repos\MVCCourseProject\StoryDB\bin\Debug\StoryDB.pdb
 C:\Users\User\source\repos\MVCCourseProject\StoryDB\obj\Debug\StoryDB.dll
 C:\Users\User\source\repos\MVCCourseProject\StoryDB\obj\Debug\StoryDB.pdb
+C:\Users\User\source\repos\MVCCourseProject\StoryDB\obj\Debug\StoryDB.sqlprojAssemblyReference.cache
