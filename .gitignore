@@ -1,3 +1,4 @@
 .vs
 packages
-StoryDB/StoryDB*
+*.jfm
+*.dbmdl
