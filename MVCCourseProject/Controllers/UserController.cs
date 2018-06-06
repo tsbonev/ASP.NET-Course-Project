@@ -28,14 +28,14 @@ namespace MVCCourseProject.Models
             }
         }
 
-        public void Logout()
+        public ActionResult Logout()
         {
             LoginUserSession.Current.Logout();
-            Response.Redirect("../");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public void Login(LoginViewModel viewModel)
+        public ActionResult Login(LoginViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -45,16 +45,14 @@ namespace MVCCourseProject.Models
                 if (isUserExists)
                 {
                     LoginUserSession.Current.SetCurrentUser(dbUser.ID, dbUser.Username, dbUser.Username == "admin");
-                    Response.Redirect("../");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid username and/or password");
-                    TempData["Message"] = "Wrong username or password!";
+                    TempData["ErrorMessage"] = "Wrong username or password!";
                 }
             }
-
-            Response.Redirect("../");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

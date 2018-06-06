@@ -95,26 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\185_profile.png" />
-    <Content Include="img\309_Exams.jpg" />
-    <Content Include="img\421_Captain america.gif" />
-    <Content Include="img\433_th4.png" />
     <Content Include="img\52_Simeon Free Real Estate.png" />
-    <Content Include="img\665_th7.png" />
-    <Content Include="img\689_185_profile.png" />
     <Content Include="img\744_Simeon Free Real Estate.png" />
-    <Content Include="img\810_brendan fraser.jpg" />
     <Content Include="img\976_Simeon Free Real Estate.png" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\logo.png" />
@@ -130,13 +116,6 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
