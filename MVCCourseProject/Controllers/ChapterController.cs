@@ -116,7 +116,7 @@ namespace MVCCourseProject.Controllers
 
             uow.Save();
 
-            return RedirectToAction("EditStories", "Stories");
+            return RedirectToAction("ViewChapters", "Chapter", new { id = chapter.StoryID });
         }
 
     }

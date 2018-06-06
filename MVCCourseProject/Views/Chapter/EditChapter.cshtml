@@ -11,6 +11,8 @@
 @using (Html.BeginForm("EditChapter", "Chapter", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
+    @Html.HiddenFor(model => model.ID)
+
     <div class="form-horizontal row col-md-12">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group col-md-6">
@@ -58,7 +60,7 @@
 
         <div class="form-group col-md-12">
             <div>
-                <input type="submit" value="Add Chapter" class="btn btn-default" />
+                <input type="submit" value="Save Chapter" class="btn btn-default" />
             </div>
         </div>
     </div>

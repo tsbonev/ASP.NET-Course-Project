@@ -15,7 +15,7 @@ DELETE FROM [Category] WHERE ID BETWEEN 1 AND 5
 DELETE FROM [User] WHERE ID BETWEEN 1 AND 2
 DELETE FROM [Story] WHERE ID BETWEEN 1 AND 5
 DELETE FROM [Chapter] WHERE ID BETWEEN 1 AND 5
-DELETE FROM [Like] WHERE ID BETWEEN 1 AND 2
+DELETE FROM [Like] WHERE UserID BETWEEN 1 AND 2
 
 -- Init Category
 SET IDENTITY_INSERT [dbo].[Category] ON
@@ -56,24 +56,24 @@ GO
 
 -- Init Chapter
 SET IDENTITY_INSERT [dbo].[Chapter] ON
-INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Text, DateCreated)
-VALUES (1, 1, 1, N'Dusk', N'dusk', "Lorem ipsum dolor sit amet", getdate())
-INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Text, DateCreated)
-VALUES (2, 1, 2, N'Hino', N'hino', "Lorem ipsum dolor sit amet", getdate())
-INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Text, DateCreated)
-VALUES (3, 1, 3, N'Vee', N'vee', "Lorem ipsum dolor sit amet", getdate())
-INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Text, DateCreated)
-VALUES (4, 2, 1, N'Test1', N'test1', "Test1", getdate())
-INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Text, DateCreated)
-VALUES (5, 2, 2, N'Test2', N'test2', "Test2", getdate())
+INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Slug, Text, DateCreated)
+VALUES (1, 1, 1, N'Dusk', N'dusk', N'Lorem ipsum dolor sit amet', getdate())
+INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Slug, Text, DateCreated)
+VALUES (2, 1, 2, N'Hino', N'hino', N'Lorem ipsum dolor sit amet', getdate())
+INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Slug, Text, DateCreated)
+VALUES (3, 1, 3, N'Vee', N'vee', N'Lorem ipsum dolor sit amet', getdate())
+INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Slug, Text, DateCreated)
+VALUES (4, 2, 1, N'Test1', N'test1', N'Test1', getdate())
+INSERT INTO [Chapter] (ID, StoryID, ChapterNum, ChapterName, Slug, Text, DateCreated)
+VALUES (5, 2, 2, N'Test2', N'test2', N'Test2', getdate())
 SET IDENTITY_INSERT [dbo].[Chapter] OFF
 GO
 
 -- Init Like
-SET IDENTITY_INSERT [dbo].[Like] ON
 INSERT INTO [Like] (UserID, ChapterID)
 VALUES (2, 1)
 INSERT INTO [Like] (UserID, ChapterID)
 VALUES (2, 2)
-SET IDENTITY_INSERT [dbo].[Like] OFF
+INSERT INTO [Like] (UserID, ChapterID)
+VALUES (1, 3)
 GO
