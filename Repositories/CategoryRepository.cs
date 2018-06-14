@@ -42,61 +42,77 @@ namespace Repositories
             base.Create(category);
         }
 
+        private int getDifference(int? right, int insert, bool adding, out bool complexDelete)
+        {
+
+            if (adding)
+            {
+                complexDelete = false;
+                return 2;
+            }
+
+            if (right - insert == 1)
+            {
+                complexDelete = false;
+                return -2; //deleting children
+            }
+            else
+            {
+                complexDelete = true; //category has children
+                return -1;
+            }
+
+        }
+
+        public void doComplexDelete(Category category, int? right, int difference, int insert)
+        {
+
+            if (category.rgt > right)
+            {
+                category.rgt += difference * 2;
+                if (category.lft > right)
+                {
+                    category.lft += difference * 2;
+                }
+                base.Update(category, c => c.ID == category.ID);
+            }
+            if (category.lft > insert && category.rgt < right)
+            {
+                category.lft += difference;
+                category.rgt += difference;
+                base.Update(category, c => c.ID == category.ID);
+            }
+        }
+
+        private void doSimpleDelete(Category category, int? right, int difference, int insert)
+        {
+
+            if (category.rgt >= insert)
+            {
+                category.rgt += difference;
+                if (category.lft >= insert)
+                {
+                    category.lft += difference;
+                }
+                base.Update(category, c => c.ID == category.ID);
+            }
+
+        }
+
         public void AdjustCategories(int insert, int? right, bool adding)
         {
 
             List<Category> categories = base.GetAll();
 
-            bool complexDelete = false;
+            bool complexDelete;
 
-            int difference = 2;
-            if (!adding)
-            {
-                if (right - insert == 1)
-                {
-                    difference = -2; //deleting children
-                }
-                else
-                {
-                    complexDelete = true; //category has children
-                    difference = -1;
-                }
-            }
+            int difference = getDifference(right, insert, adding, out complexDelete);
 
             foreach (Category category in categories)
             {
-                if (!complexDelete)
-                {
-                    if (category.rgt >= insert)
-                    {
-                        category.rgt += difference;
-                        if (category.lft >= insert)
-                        {
-                            category.lft += difference;
-                        }
-                        base.Update(category, c => c.ID == category.ID);
-                    }
 
-                }
-                else
-                {
-                    if (category.rgt > right)
-                    {
-                        category.rgt += difference * 2;
-                        if (category.lft > right)
-                        {
-                            category.lft += difference * 2;
-                        }
-                        base.Update(category, c => c.ID == category.ID);
-                    }
-                    if (category.lft > insert && category.rgt < right)
-                    {
-                        category.lft += difference;
-                        category.rgt += difference;
-                        base.Update(category, c => c.ID == category.ID);
-                    }
-
-                }
+                if (complexDelete) doComplexDelete(category, right, difference, insert);
+                else doSimpleDelete(category, right, difference, insert);
 
             }
 
